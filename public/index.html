@@ -17,6 +17,7 @@
         </span>
       </span>
     </h1>
+    <div class="character-info"></div>
   </div>
 
   <div class="app">
@@ -30,13 +31,14 @@
         </span>
       </span>
     </h1>
+    <div class="character-info"></div>
   </div>
   <script src="/vendor.js" charset="utf-8"></script>
   <script src="/app.js" charset="utf-8"></script>
 
   <script type="text/javascript">
     var app = require('index');
-    const counter = document.querySelectorAll('.counter');
+    const counter = document.querySelectorAll('.app');
     for (let i = 0; i < counter.length; i++) {
       app(counter[i]);
     }

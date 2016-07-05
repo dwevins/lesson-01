@@ -2,6 +2,7 @@ export default function (app) {
   const upBtn = app.querySelector('.btn--up');
   const dnBtn = app.querySelector('.btn--down');
   const count = app.querySelector('.counter__count');
+  const charInfo = app.querySelector('.character-info');
 
   let number = 1;
 
@@ -26,5 +27,10 @@ export default function (app) {
   const evenLater = later.then((res) => res.json());
   evenLater.then((data) => {
     console.log(data);
+
+    charInfo.innerHTML = `
+    <h2>${data.name}</h2>
+    `;
   });
+
 }
