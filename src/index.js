@@ -32,5 +32,4 @@ export default function (app) {
     <h2>${data.name}</h2>
     `;
   });
-
 }
