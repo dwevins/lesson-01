@@ -1,10 +1,9 @@
-export default function (app) {
-  return;
+import Counter from 'counter';
 
-  const later = fetch('https://swapi.co/api/people/1');
-  const evenLater = later.then((res) => res.json());
-  evenLater.then((data) => {
-    elements.charInfo.innerHTML = `
-    <h2>${data.name}</h2>
-    `;
-  });
+export default function (element) {
+  const component = new Counter(element);
+  component.update();
+  component.lookupCurrentCharacter();
+
+  return;
+}
