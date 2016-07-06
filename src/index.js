@@ -1,5 +1,4 @@
 export default function (app) {
-
   return {
     elements: {
       upBtn: app.querySelector('.btn--up'),
@@ -12,30 +11,28 @@ export default function (app) {
       number: 1,
     },
 
-    update: function(){
-      this.elements.count.innerText = this.data.number;
-    },
-
     actions: {
-      upClick: function() {
+      upClick() {
         this.data.number += 1;
         this.update();
       },
 
-      dnClick: function() {
+      dnClick() {
         this.data.number -= 1;
         this.update();
       },
     },
 
-    setup: function() {
-      this.elements.upBtn.addEventListener('click', this.actions.upClick);
-      this.elements.dnBtn.addEventListener('click', this.actions.dnClick);
-    }
-  };
+    update() {
+      this.elements.count.innerText = this.data.number;
+    },
 
-  elements.upBtn.addEventListener('click', upClick);
-  elements.dnBtn.addEventListener('click', dnClick);
+    setup() {
+      const currentComponent = this;
+      this.elements.upBtn.addEventListener('click', this.actions.upClick.bind(currentComponent));
+      this.elements.dnBtn.addEventListener('click', this.actions.dnClick.bind(currentComponent));
+    },
+  };
 
   const later = fetch('https://swapi.co/api/people/1');
   const evenLater = later.then((res) => res.json());

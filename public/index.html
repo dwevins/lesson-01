@@ -40,7 +40,8 @@
     var app = require('index');
     const counter = document.querySelectorAll('.app');
     for (let i = 0; i < counter.length; i++) {
-      app(counter[i]);
+      var component = app(counter[i]);
+      component.setup();
     }
   </script>
 </body>
