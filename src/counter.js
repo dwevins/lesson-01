@@ -23,7 +23,7 @@ export default class Counter {
     this.elements.count.innerText = this.data.number;
 
     if (this.data.isLoading) {
-      this.elements.charInfo.innerHTML = `<span class="fa fa-spinner fa-spin fa-3x fa-fw"></span>`;
+      this.elements.charInfo.innerHTML = '<span class="fa fa-spinner fa-spin fa-3x fa-fw"></span>';
     }
 
     if (this.data.character && this.data.character.name) {
