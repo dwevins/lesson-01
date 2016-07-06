@@ -1,13 +1,15 @@
 export default function (app) {
-  const upBtn = app.querySelector('.btn--up');
-  const dnBtn = app.querySelector('.btn--down');
-  const count = app.querySelector('.counter__count');
-  const charInfo = app.querySelector('.character-info');
+  const elements = {
+    upBtn: app.querySelector('.btn--up'),
+    dnBtn: app.querySelector('.btn--down'),
+    count: app.querySelector('.counter__count'),
+    charInfo: app.querySelector('.character-info'),
+  };
 
   let number = 1;
 
   function update() {
-    count.innerText = number;
+    elements.count.innerText = number;
   }
 
   function upClick() {
@@ -20,15 +22,15 @@ export default function (app) {
     update();
   }
 
-  upBtn.addEventListener('click', upClick);
-  dnBtn.addEventListener('click', dnClick);
+  elements.upBtn.addEventListener('click', upClick);
+  elements.dnBtn.addEventListener('click', dnClick);
 
   const later = fetch('https://swapi.co/api/people/1');
   const evenLater = later.then((res) => res.json());
   evenLater.then((data) => {
     console.log(data);
 
-    charInfo.innerHTML = `
+    elements.charInfo.innerHTML = `
     <h2>${data.name}</h2>
     `;
   });
