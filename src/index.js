@@ -1,26 +1,38 @@
 export default function (app) {
-  const elements = {
-    upBtn: app.querySelector('.btn--up'),
-    dnBtn: app.querySelector('.btn--down'),
-    count: app.querySelector('.counter__count'),
-    charInfo: app.querySelector('.character-info'),
+
+  return {
+    elements: {
+      upBtn: app.querySelector('.btn--up'),
+      dnBtn: app.querySelector('.btn--down'),
+      count: app.querySelector('.counter__count'),
+      charInfo: app.querySelector('.character-info'),
+    },
+
+    data: {
+      number: 1,
+    },
+
+    update: function(){
+      this.elements.count.innerText = this.data.number;
+    },
+
+    actions: {
+      upClick: function() {
+        this.data.number += 1;
+        this.update();
+      },
+
+      dnClick: function() {
+        this.data.number -= 1;
+        this.update();
+      },
+    },
+
+    setup: function() {
+      this.elements.upBtn.addEventListener('click', this.actions.upClick);
+      this.elements.dnBtn.addEventListener('click', this.actions.dnClick);
+    }
   };
-
-  let number = 1;
-
-  function update() {
-    elements.count.innerText = number;
-  }
-
-  function upClick() {
-    number += 1;
-    update();
-  }
-
-  function dnClick() {
-    number -= 1;
-    update();
-  }
 
   elements.upBtn.addEventListener('click', upClick);
   elements.dnBtn.addEventListener('click', dnClick);
@@ -28,8 +40,6 @@ export default function (app) {
   const later = fetch('https://swapi.co/api/people/1');
   const evenLater = later.then((res) => res.json());
   evenLater.then((data) => {
-    console.log(data);
-
     elements.charInfo.innerHTML = `
     <h2>${data.name}</h2>
     `;
