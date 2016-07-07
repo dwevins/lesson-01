@@ -1,3 +1,5 @@
+import Character from 'character';
+
 export default class Counter {
 
   constructor(parentElement) {
@@ -25,6 +27,10 @@ export default class Counter {
     if (this.data.isLoading) {
       this.elements.charInfo.innerHTML = '<span class="fa fa-spinner fa-spin fa-3x fa-fw"></span>';
     } else if (this.data.character && this.data.character.name) {
+      const charComponent = new Character(this.data.character);
+      this.elements.charInfo.innerHTML = '';
+      this.elements.charInfo.appendChild(charComponent.element);
+
 
       const spoilerButton = this.elements.charInfo.querySelector('.button');
 
@@ -34,7 +40,7 @@ export default class Counter {
       const spoilerStatus = this.charInfo.querySelector('.fa-stack');
       spoilerStatus.style.display = 'none';
 
-      spoilerStatus.addEventListener('click', showSpoiler());
+      spoilerStatus.addEventListener('click');
 
       for (let i = 0; i < this.data.character.aliases.length; i++) {
         const listItem = document.createElement('li');

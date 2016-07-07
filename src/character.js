@@ -1,11 +1,11 @@
 export default class Character {
   constructor(charInfo) {
-    this.container = document.createElement('div');
+    this.element = document.createElement('div');
     this.data = {
       charInfo,
     };
 
-    this.container.innerHTML = `
+    this.element.innerHTML = `
       <h2>
       ${this.data.characterInfo.name}
         <button>Spoiler</button>
