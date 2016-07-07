@@ -24,10 +24,31 @@ export default class Counter {
 
     if (this.data.isLoading) {
       this.elements.charInfo.innerHTML = '<span class="fa fa-spinner fa-spin fa-3x fa-fw"></span>';
-    }
+    } else if (this.data.character && this.data.character.name) {
+      this.elements.charInfo.innerHTML = `
+        <h2>
+        ${this.data.character.name}
+          <button>Spoiler</button>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-heartbeat fa-stack-1x"></i>
+            <i class="fa fa-ban fa-stack-2x text-danger"></i>
+          </span>
+        </h2>
+        <ul class="list"></ul>`;
 
-    if (this.data.character && this.data.character.name) {
-      this.elements.charInfo.innerHTML = `<h2>${this.data.character.name}</h2>`;
+      const list = this.elements.charInfo.querySelector('.list');
+
+      const dead = this.elements.charInfo.querySelector('.fa-ban');
+      dead.style.display = 'none';
+
+      const spoilerStatus = this.charInfo.querySelector('.fa-stack');
+      spoilerStatus.style.display = 'none';
+
+      for (let i = 0; i < this.data.character.aliases.length; i++) {
+        const listItem = document.createElement('li');
+        listItem.innerText = `AKA ${this.data.character.aliases[i]}`;
+        list.appendChild(listItem);
+      }
     } else {
       this.elements.charInfo.innerHTML = '<h2>Character info not found</h2>';
     }
@@ -48,6 +69,7 @@ export default class Counter {
   lookupCurrentCharacter() {
     this.data.isLoading = true;
     this.lookupCharacter(this.data.number);
+    this.data.isLoading = false;
   }
 
   lookupCharacter(characterID) {
