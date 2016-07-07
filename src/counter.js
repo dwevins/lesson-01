@@ -25,18 +25,6 @@ export default class Counter {
     if (this.data.isLoading) {
       this.elements.charInfo.innerHTML = '<span class="fa fa-spinner fa-spin fa-3x fa-fw"></span>';
     } else if (this.data.character && this.data.character.name) {
-      this.elements.charInfo.innerHTML = `
-        <h2>
-        ${this.data.character.name}
-          <button>Spoiler</button>
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-heartbeat fa-stack-1x"></i>
-            <i class="fa fa-ban fa-stack-2x text-danger"></i>
-          </span>
-        </h2>
-        <ul class="list"></ul>`;
-
-      const list = this.elements.charInfo.querySelector('.list');
 
       const spoilerButton = this.elements.charInfo.querySelector('.button');
 
