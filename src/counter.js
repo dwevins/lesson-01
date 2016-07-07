@@ -38,11 +38,15 @@ export default class Counter {
 
       const list = this.elements.charInfo.querySelector('.list');
 
+      const spoilerButton = this.elements.charInfo.querySelector('.button');
+
       const dead = this.elements.charInfo.querySelector('.fa-ban');
       dead.style.display = 'none';
 
       const spoilerStatus = this.charInfo.querySelector('.fa-stack');
       spoilerStatus.style.display = 'none';
+
+      spoilerStatus.addEventListener('click', showSpoiler());
 
       for (let i = 0; i < this.data.character.aliases.length; i++) {
         const listItem = document.createElement('li');
